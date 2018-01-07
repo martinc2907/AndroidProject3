@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PokeLock.iml" filepath="$PROJECT_DIR$/PokeLock.iml" />
+      <module fileurl="file://C:\Users\user\AndroidStudioProjects\PokeLock\PokeLock.iml" filepath="C:\Users\user\AndroidStudioProjects\PokeLock\PokeLock.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\user\AndroidStudioProjects\PokeLock\app\app.iml" filepath="C:\Users\user\AndroidStudioProjects\PokeLock\app\app.iml" />
     </modules>
   </component>
 </project>
