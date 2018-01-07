@@ -36,6 +36,7 @@ public class ConfigActivity extends Activity {
                 int seconds = Integer.valueOf(text);
                 Intent intent = new Intent(ConfigActivity.this, LockScreenActivity.class);
                 intent.putExtra("TIME", seconds);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
             }
