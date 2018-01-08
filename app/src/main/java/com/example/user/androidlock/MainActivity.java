@@ -36,9 +36,16 @@ public class MainActivity extends Activity {
                 int seconds = Integer.valueOf(text);
                 Intent intent = new Intent(MainActivity.this, LockScreenActivity.class);
                 intent.putExtra("TIME", seconds);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                overridePendingTransition(R.anim.fade_in,0);
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        overridePendingTransition(R.anim.fade_in_long,R.anim.fade_out_long);
     }
 }

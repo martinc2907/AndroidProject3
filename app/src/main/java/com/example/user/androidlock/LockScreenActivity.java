@@ -53,7 +53,6 @@ public class LockScreenActivity extends AppCompatActivity{
             startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
         }
 
-
         ticktock = findViewById(R.id.ticktock);
         unlockBtn = findViewById(R.id.unlock_btn);
 
@@ -102,6 +101,7 @@ public class LockScreenActivity extends AppCompatActivity{
                     popup.cancel();
 
                 //Show success/failure image
+                unlockBtn.setVisibility(View.GONE);
                 LinearLayout ll = findViewById(R.id.back);
                 if(success){
                     ll.setBackgroundResource(R.drawable.test1);
@@ -114,9 +114,8 @@ public class LockScreenActivity extends AppCompatActivity{
                 //Go back to previous screen
                 mHomeKeyLocker.unlock();
                 Intent i= new Intent(LockScreenActivity.this, MainActivity.class);
-                //i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(i);
-                overridePendingTransition(R.anim.fade_in_long,R.anim.fade_out_long);
                 success = true;
             }
         }.start();
