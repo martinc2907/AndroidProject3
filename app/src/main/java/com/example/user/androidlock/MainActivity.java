@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
     private int main_img;
     private Button test_btn;
     private boolean backFromGallery;
+    private int money;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -88,8 +89,9 @@ public class MainActivity extends Activity {
         //If coming back from gallery activity.
         if(requestCode != 1) {
             mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
-            mSettings.getInt("main_img", 0);
+            main_img = mSettings.getInt("main_img", 0);
             backFromGallery = true; //set flag.
+            money = mSettings.getInt("money",0);
         }
         //If coming back from screen lock.
         else{
@@ -105,14 +107,17 @@ public class MainActivity extends Activity {
         Background b1 = new Background(R.drawable.img1, 1000, false, "cute");
         Background b2 = new Background(R.drawable.img2, 1000, false, "cute");
         Background b3 = new Background(R.drawable.img3, 1000, false, "cute");
-        Background b4 = new Background(R.drawable.img4, 1000, false, "cute");
-        Background b5 = new Background(R.drawable.img5, 1000, false, "cute");
+        Background b4 = new Background(R.drawable.img3, 1000, false, "cute");
+        Background b5 = new Background(R.drawable.img4, 1000, false, "cute");
 
         Gson gson = new Gson();
         String json;
 
         main_img = R.drawable.lock_default;
         editor.putInt("main_img", R.drawable.img1);
+
+        money = 99999;
+        editor.putInt("money", money);
 
         json = gson.toJson(b1);
         editor.putString("b1",json);

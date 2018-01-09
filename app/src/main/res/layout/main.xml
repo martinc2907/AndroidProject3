@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -8,11 +9,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text = "test button-change image"
-            android:id="@+id/test_btn"/>
 
         <RelativeLayout
             android:id="@+id/viewA"
@@ -22,6 +18,23 @@
             android:background="@android:color/holo_purple"
             android:orientation="horizontal"
             >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft = "@drawable/coin"
+                android:layout_alignParentRight="true"
+                android:text = "9999"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="false"
+                android:paddingLeft="15dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "test button-change image"
+                android:id="@+id/test_btn"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -45,6 +58,52 @@
             android:layout_weight="0.4"
             android:background="@android:color/holo_orange_light"
             android:orientation="horizontal">
+
+            <com.github.clans.fab.FloatingActionMenu
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:menu_colorNormal = "#42A5F5">
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id = "@+id/float1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fab_size = "mini"
+                    app:fab_colorNormal = "#42A5F5"
+                    android:src="@drawable/donut"
+                    app:fab_label = "Cute"/>
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id = "@+id/float2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pikachu"
+                     app:fab_size = "mini"
+                    app:fab_colorNormal = "#42A5F5"
+                    app:fab_label = "Pokemon"/>
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id = "@+id/float3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/giraffe"
+                    app:fab_size = "mini"
+                    app:fab_colorNormal = "#42A5F5"
+                    app:fab_label = "Animals"/>
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id = "@+id/float4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cube"
+                    app:fab_size = "mini"
+                    app:fab_colorNormal = "#42A5F5"
+                    app:fab_label = "Cool 3D"/>
+
+            </com.github.clans.fab.FloatingActionMenu>
+
 
             <Button
                 android:id= "@+id/lock_btn"
