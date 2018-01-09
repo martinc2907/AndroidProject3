@@ -41,7 +41,6 @@ public class MainActivity extends Activity {
 
         if(!mSettings.getBoolean("firstTime",false)){
             Log.e("TAGGER", "Initialised");
-            //Run code once
             init_data();
         }
         main_img = mSettings.getInt("main_img",0);
