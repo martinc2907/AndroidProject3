@@ -21,6 +21,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,6 +37,8 @@ public class LockScreenActivity extends AppCompatActivity{
     private AlertDialog popup;
     private CountDownTimer countDownTimer;
     boolean success = true;
+    LinearLayout ll;
+    int img_id;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -45,6 +49,12 @@ public class LockScreenActivity extends AppCompatActivity{
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.lockscreen);
+
+        img_id = getIntent().getIntExtra("IMG",0);
+        if(img_id!=0) {
+            ll = findViewById(R.id.back);
+            ll.setBackgroundResource(getIntent().getIntExtra("IMG", 0));
+        }
 
         mHomeKeyLocker = new HomeKeyLocker();
         mHomeKeyLocker.lock(this);
@@ -95,14 +105,13 @@ public class LockScreenActivity extends AppCompatActivity{
 
             @Override
             public void onFinish() {
-
                 this.cancel();
                 if(popup!=null)
                     popup.cancel();
+                unlockBtn.setVisibility(View.GONE);
 
                 //Show success/failure image
-                unlockBtn.setVisibility(View.GONE);
-                LinearLayout ll = findViewById(R.id.back);
+                ll = findViewById(R.id.back);
                 if(success){
                     ll.setBackgroundResource(R.drawable.test1);
                     ticktock.setText("Nice!");
