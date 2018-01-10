@@ -27,7 +27,7 @@ public class Background {
         return owned;
     }
 
-    public void setAvailable(boolean set){owned = set;}
+    public void setAvailable(){owned = true;}
 
     public Background(int image, int price, boolean owned, String tag ){
         this.image = image;

@@ -35,7 +35,7 @@
                 >
 
                 <com.github.clans.fab.FloatingActionButton
-                    android:id = "@+id/float1"
+                    android:id = "@+id/cute_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:fab_size = "mini"
@@ -44,7 +44,7 @@
                     app:fab_label = "Cute"/>
 
                 <com.github.clans.fab.FloatingActionButton
-                    android:id = "@+id/float2"
+                    android:id = "@+id/pokemon_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/pikachu"
@@ -53,7 +53,7 @@
                     app:fab_label = "Pokemon"/>
 
                 <com.github.clans.fab.FloatingActionButton
-                    android:id = "@+id/float3"
+                    android:id = "@+id/animals_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/giraffe"
@@ -62,7 +62,7 @@
                     app:fab_label = "Animals"/>
 
                 <com.github.clans.fab.FloatingActionButton
-                    android:id = "@+id/float4"
+                    android:id = "@+id/cool_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/cube"

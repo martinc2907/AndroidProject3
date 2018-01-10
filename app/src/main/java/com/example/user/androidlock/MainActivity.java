@@ -39,6 +39,11 @@ public class MainActivity extends Activity {
     private NumberPicker min;
     private FloatingActionButton preview;
     private RelativeLayout rl;
+    private FloatingActionButton cute_btn;
+    private FloatingActionButton animal_btn;
+    private FloatingActionButton cool_btn;
+    private FloatingActionButton pokemon_btn;
+    private Button money_show;
 
     @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -51,17 +56,24 @@ public class MainActivity extends Activity {
         mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         //mSettings.edit().clear().commit();
 
+        /*
         if(!mSettings.getBoolean("firstTime",false)){
             Log.e("TAGGER", "Initialised");
             init_data();
-        }
-        //init_data();
+        }*/
+        init_data();
 
         main_img = mSettings.getInt("main_img",0);
         lock_btn = findViewById(R.id.lock_btn);
         preview = findViewById(R.id.preview);
         rl = findViewById(R.id.rl);
+        cute_btn = findViewById(R.id.cute_btn);
+        animal_btn = findViewById(R.id.animals_btn);
+        pokemon_btn = findViewById(R.id.pokemon_btn);
+        cool_btn = findViewById(R.id.cool_btn);
+        money_show = findViewById(R.id.money);
 
+        money_show.setText(Integer.toString(money));
 
         hr = findViewById(R.id.hr);
         hr.setMinValue(0);
@@ -123,6 +135,24 @@ public class MainActivity extends Activity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
+
+        animal_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, AnimalBackgrounds.class);
+                startActivityForResult(i, 2);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+
+        pokemon_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent i = new Intent(MainActivity.this, PokemonBackgrounds.class);
+                startActivityForResult(i, 3);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
     }
 
     @Override
@@ -142,6 +172,7 @@ public class MainActivity extends Activity {
             main_img = mSettings.getInt("main_img", 0);
             backFromGallery = true; //set flag.
             money = mSettings.getInt("money",0);
+            money_show.setText(Integer.toString(money));
         }
         //If coming back from screen lock.
         else{
@@ -154,32 +185,67 @@ public class MainActivity extends Activity {
         editor = mSettings.edit();
         editor.putBoolean("firstTime",true);
 
-        Background b1 = new Background(R.drawable.img1, 1000, false, "cute");
-        Background b2 = new Background(R.drawable.img2, 1000, false, "cute");
-        Background b3 = new Background(R.drawable.img3, 1000, false, "cute");
-        Background b4 = new Background(R.drawable.img3, 1000, false, "cute");
-        Background b5 = new Background(R.drawable.img4, 1000, false, "cute");
-
-        Gson gson = new Gson();
-        String json;
-
+        //Default main image and initialise.
         main_img = R.drawable.lock_default;
-        editor.putInt("main_img", R.drawable.img1);
+        editor.putInt("main_img", R.drawable.lock_default);
 
+        //Default money and initalise.
         money = 99999;
         editor.putInt("money", money);
 
-        json = gson.toJson(b1);
-        editor.putString("b1",json);
-        json = gson.toJson(b2);
-        editor.putString("b2",json);
-        json = gson.toJson(b3);
-        editor.putString("b3",json);
-        json = gson.toJson(b4);
-        editor.putString("b4",json);
-        json = gson.toJson(b5);
-        editor.putString("b5",json);
+        //Make animal background objects.
+        Background a0 = new Background(R.drawable.animal1,300,false,"animal") ;
+        Background a1 = new Background(R.drawable.animal2,300,false,"animal");
+        Background a2 = new Background(R.drawable.animal3,700,true,"animal");
+        Background a3 = new Background(R.drawable.animal4,800,false,"animal");
+        Background a4 = new Background(R.drawable.animal5,1500,false,"animal");
+        Background a5 = new Background(R.drawable.animal6,300,false,"animal") ;
+        Background a6 = new Background(R.drawable.animal7,300,false,"animal");
+        Background a7 = new Background(R.drawable.animal8,700,true,"animal");
+        Background a8 = new Background(R.drawable.animal9,800,false,"animal");
+        Background a9 = new Background(R.drawable.animal10,1500,false,"animal");
+
+        //Add animal objects to SharedPreferences.
+        Gson gson = new Gson();
+        String json;
+        json = gson.toJson(a0);
+        editor.putString("a0",json);
+        json = gson.toJson(a1);
+        editor.putString("a1",json);
+        json = gson.toJson(a2);
+        editor.putString("a2",json);
+        json = gson.toJson(a3);
+        editor.putString("a3",json);
+        json = gson.toJson(a4);
+        editor.putString("a4",json);
+        json = gson.toJson(a5);
+        editor.putString("a5",json);
+        json = gson.toJson(a6);
+        editor.putString("a6",json);
+        json = gson.toJson(a7);
+        editor.putString("a7",json);
+        json = gson.toJson(a8);
+        editor.putString("a8",json);
+        json = gson.toJson(a9);
+        editor.putString("a9",json);
         editor.commit();    //Call once? or every time?
+
+        //Make pokemon background objects.
+        Background p0 = new Background(R.drawable.b1,300,false,"pokemon") ;
+        Background p1 = new Background(R.drawable.b2,300,false,"pokemon");
+        Background p2 = new Background(R.drawable.b3,700,true,"pokemon");
+        Background p3 = new Background(R.drawable.b4,800,false,"pokemon");
+
+        //Add pokemon objects to SharedPreferences.
+        json = gson.toJson(p0);
+        editor.putString("p0",json);
+        json = gson.toJson(p1);
+        editor.putString("p1",json);
+        json = gson.toJson(p2);
+        editor.putString("p2",json);
+        json = gson.toJson(p3);
+        editor.putString("p3",json);
+        editor.commit();
     }
 
     public void hideViews(){
@@ -198,9 +264,6 @@ public class MainActivity extends Activity {
         //tv3.setVisibility(View.INVISIBLE);
         tv3.setText("PREVIEW");
         b1.setVisibility(View.INVISIBLE);
-
-
-
     }
 
     public void showViews(){
@@ -219,6 +282,5 @@ public class MainActivity extends Activity {
         //tv3.setVisibility(View.VISIBLE);
         tv3.setText("Study Lock");
         b1.setVisibility(View.VISIBLE);
-
     }
 }

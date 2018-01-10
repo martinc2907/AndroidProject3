@@ -22,9 +22,9 @@
             </intent-filter>
         </activity>
 
-
         <activity android:name= ".LockScreenActivity" />
-
+        <activity android:name= ".AnimalBackgrounds"/>
+        <activity android:name=".PokemonBackgrounds"/>
 
     </application>
 
