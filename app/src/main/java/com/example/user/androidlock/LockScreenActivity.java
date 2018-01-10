@@ -54,8 +54,9 @@ public class LockScreenActivity extends AppCompatActivity{
         getSupportActionBar().hide();
 
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.lockscreen);
 
         img_id = getIntent().getIntExtra("IMG",0);
@@ -151,9 +152,12 @@ public class LockScreenActivity extends AppCompatActivity{
                 Intent i= new Intent(LockScreenActivity.this, MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(i);
+                finish();
                 success = true;
             }
         }.start();
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
     }
 
     @Override
@@ -162,6 +166,8 @@ public class LockScreenActivity extends AppCompatActivity{
 
         ActivityManager activityManager = (ActivityManager) getApplicationContext()
                 .getSystemService(Context.ACTIVITY_SERVICE);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 
         activityManager.moveTaskToFront(getTaskId(), 0);
     }

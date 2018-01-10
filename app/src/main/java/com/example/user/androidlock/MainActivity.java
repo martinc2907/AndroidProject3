@@ -164,7 +164,7 @@ public class MainActivity extends Activity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-
+        super.onActivityResult(requestCode, resultCode, data);
         //If coming back from gallery activity.
         if(requestCode != 1) {
             mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
@@ -177,7 +177,7 @@ public class MainActivity extends Activity {
         else{
             backFromGallery = false;    //set flag for animation.
         }
-        super.onResume();
+
     }
 
     private void init_data(){

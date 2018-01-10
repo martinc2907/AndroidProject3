@@ -59,28 +59,6 @@ public class PokemonBackgrounds extends Activity {
         mSettings = this.getSharedPreferences("Settings",Context.MODE_PRIVATE);
         editor = mSettings.edit();
 
-        /*
-        Background b1 = new Background(R.drawable.b1,500,false,"cute") ;
-        Background b2 = new Background(R.drawable.b2,200,false,"cute");
-        Background b3 = new Background(R.drawable.b3,100,true,"cute");
-        Background b4 = new Background(R.drawable.b4,400,false,"cute");
-
-
-        Gson gson = new Gson();
-        String json,json2,json3,json4;
-        json = gson.toJson(b1);
-        editor.putString("p0",json);
-        json2 = gson.toJson(b2);
-        editor.putString("p1",json2);
-        json3 = gson.toJson(b3);
-        editor.putString("p2",json3);
-        json4 = gson.toJson(b4);
-        editor.putString("p3",json4);
-
-        editor.putInt("money",1000);
-        editor.putInt("main_img",R.drawable.test1);
-        editor.commit();
-        */
         //Put Money and selcted
         Gson gson = new Gson();
         list.add(gson.fromJson(mSettings.getString("p0","fail"),Background.class));
