@@ -111,7 +111,7 @@ public class LockScreenActivity extends AppCompatActivity{
         hrText = findViewById(R.id.tickText);
         minText = findViewById(R.id.tockText);
         done = findViewById(R.id.done);
-        reward = (hours*3600+mins*60)/100;
+        reward = (hours*3600+mins*60)/10;
 
         countDownTimer = new CountDownTimer((hours*60*60 + mins*60)*1000+1000, 1000){
             @Override
@@ -179,7 +179,6 @@ public class LockScreenActivity extends AppCompatActivity{
     protected void onStop(){
         super.onStop();
         //isOn = !isOn;
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
     }
 
     /*

@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 
         /* Shared Preferences */
         mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        mSettings.edit().clear().commit();
+        //mSettings.edit().clear().commit();
         //initialize many times or not
 
 
@@ -207,7 +207,7 @@ public class MainActivity extends Activity {
         editor.putInt("main_img", R.drawable.default_background);
 
         //Default money and initalise.
-        money = 2000;
+        money = 9000;
         editor.putInt("money", money);
 
         //Make animal background objects.
