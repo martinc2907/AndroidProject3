@@ -96,8 +96,8 @@
             android:layout_height="wrap_content"
             app:fab_size = "mini"
             app:fab_colorNormal = "#ee3e3838"
-            android:src="@drawable/donut"
-            app:fab_label = "Cute"
+            android:src="@drawable/nature"
+            app:fab_label = "Nature"
 
             />
 
@@ -123,7 +123,7 @@
             android:id = "@+id/float4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/cube"
+            android:src="@drawable/fantasy"
             app:fab_size = "mini"
             app:fab_colorNormal = "#ee3e3838"
             app:fab_label = "Cool 3D"/>

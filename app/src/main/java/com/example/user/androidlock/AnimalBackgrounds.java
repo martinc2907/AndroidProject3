@@ -58,47 +58,7 @@ public class AnimalBackgrounds extends Activity {
         //Shared Preferences 초기화
         mSettings = this.getSharedPreferences("Settings",Context.MODE_PRIVATE);
         editor = mSettings.edit();
-        /*
-        Background b1 = new Background(R.drawable.animal1,300,false,"cute") ;
-        Background b2 = new Background(R.drawable.animal2,300,false,"cute");
-        Background b3 = new Background(R.drawable.animal3,700,true,"cute");
-        Background b4 = new Background(R.drawable.animal4,800,false,"cute");
-        Background b5 = new Background(R.drawable.animal5,1500,false,"cute");
-        Background b6 = new Background(R.drawable.animal6,300,false,"cute") ;
-        Background b7 = new Background(R.drawable.animal7,300,false,"cute");
-        Background b8 = new Background(R.drawable.animal8,700,true,"cute");
-        Background b9 = new Background(R.drawable.animal9,800,false,"cute");
-        Background b10 = new Background(R.drawable.animal10,1500,false,"cute");
 
-        Gson gson = new Gson();
-        String json,json2,json3,json4,json5,json6,json7,json8,json9,json10;
-        json = gson.toJson(b1);
-        editor.putString("p0",json);
-        json2 = gson.toJson(b2);
-        editor.putString("p1",json2);
-        json3 = gson.toJson(b3);
-        editor.putString("p2",json3);
-        json4 = gson.toJson(b4);
-        editor.putString("p3",json4);
-        json5 = gson.toJson(b5);
-        editor.putString("p4",json5);
-        json6 = gson.toJson(b6);
-        editor.putString("p5",json6);
-        json7 = gson.toJson(b7);
-        editor.putString("p6",json7);
-        json8 = gson.toJson(b8);
-        editor.putString("p7",json8);
-        json9 = gson.toJson(b9);
-        editor.putString("p8",json9);
-        json10 = gson.toJson(b10);
-        editor.putString("p9",json10);
-
-
-        editor.putInt("money",1000);
-        editor.putInt("main_img",R.drawable.test1);
-        editor.commit();
-        */
-        //Put Money and selcted
 
         Gson gson = new Gson();
         list.add(gson.fromJson(mSettings.getString("a0","fail"),Background.class));
@@ -128,12 +88,28 @@ public class AnimalBackgrounds extends Activity {
             money.setVisibility(View.GONE);
             set.setText("Set");
         }
-
         Pokemon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
                 Intent intent = new Intent(AnimalBackgrounds.this, PokemonBackgrounds.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+        Cute.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(AnimalBackgrounds.this, NatureBackgrounds.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        Cool3D.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(AnimalBackgrounds.this, FantasyBackground.class);
                 startActivity(intent);
                 finish();
             }

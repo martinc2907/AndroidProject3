@@ -25,6 +25,8 @@
         <activity android:name= ".LockScreenActivity" />
         <activity android:name= ".AnimalBackgrounds"/>
         <activity android:name=".PokemonBackgrounds"/>
+        <activity android:name= ".FantasyBackground"/>
+        <activity android:name=".NatureBackgrounds"/>
 
     </application>
 

@@ -40,9 +40,8 @@ public class MainActivity extends Activity {
     private FloatingActionButton preview;
     private RelativeLayout rl;
     private FloatingActionButton cute_btn;
-    private FloatingActionButton animal_btn;
+    private FloatingActionButton animal_btn,nature_btn,fantasy_btn,pokemon_btn;
     private FloatingActionButton cool_btn;
-    private FloatingActionButton pokemon_btn;
     private Button money_show;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -67,10 +66,10 @@ public class MainActivity extends Activity {
         lock_btn = findViewById(R.id.lock_btn);
         preview = findViewById(R.id.preview);
         rl = findViewById(R.id.rl);
-        cute_btn = findViewById(R.id.cute_btn);
         animal_btn = findViewById(R.id.animals_btn);
         pokemon_btn = findViewById(R.id.pokemon_btn);
-        cool_btn = findViewById(R.id.cool_btn);
+        nature_btn = findViewById(R.id.nature_btn);
+        fantasy_btn = findViewById(R.id.fantasy_btn);
         money_show = findViewById(R.id.money);
 
         money_show.setText(Integer.toString(money));
@@ -153,6 +152,23 @@ public class MainActivity extends Activity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
+
+        fantasy_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent i = new Intent(MainActivity.this, FantasyBackground.class);
+                startActivityForResult(i, 4);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+        nature_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent i = new Intent(MainActivity.this, NatureBackgrounds.class);
+                startActivityForResult(i, 5);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
     }
 
     @Override
@@ -190,7 +206,7 @@ public class MainActivity extends Activity {
         editor.putInt("main_img", R.drawable.lock_default);
 
         //Default money and initalise.
-        money = 99999;
+        money = 2000;
         editor.putInt("money", money);
 
         //Make animal background objects.
@@ -235,6 +251,10 @@ public class MainActivity extends Activity {
         Background p1 = new Background(R.drawable.b2,300,false,"pokemon");
         Background p2 = new Background(R.drawable.b3,700,true,"pokemon");
         Background p3 = new Background(R.drawable.b4,800,false,"pokemon");
+        Background p4 = new Background(R.drawable.b5,300,false,"pokemon") ;
+        Background p5 = new Background(R.drawable.b6,300,false,"pokemon");
+        Background p6 = new Background(R.drawable.b7,700,true,"pokemon");
+        Background p7 = new Background(R.drawable.b8,800,false,"pokemon");
 
         //Add pokemon objects to SharedPreferences.
         json = gson.toJson(p0);
@@ -245,6 +265,82 @@ public class MainActivity extends Activity {
         editor.putString("p2",json);
         json = gson.toJson(p3);
         editor.putString("p3",json);
+        json = gson.toJson(p4);
+        editor.putString("p4",json);
+        json = gson.toJson(p5);
+        editor.putString("p5",json);
+        json = gson.toJson(p6);
+        editor.putString("p6",json);
+        json = gson.toJson(p7);
+        editor.putString("p7",json);
+        editor.commit();
+
+        //Make nature background objects.
+        Background n0 = new Background(R.drawable.nature0,300,false,"pokemon") ;
+        Background n1 = new Background(R.drawable.nature1,300,false,"pokemon");
+        Background n2 = new Background(R.drawable.nature2,700,true,"pokemon");
+        Background n3 = new Background(R.drawable.nature3,800,false,"pokemon");
+        Background n4 = new Background(R.drawable.nature4,300,false,"pokemon") ;
+        Background n5 = new Background(R.drawable.nature5,300,false,"pokemon");
+        Background n6 = new Background(R.drawable.nature6,700,true,"pokemon");
+        Background n7 = new Background(R.drawable.nature7,800,false,"pokemon");
+        Background n8 = new Background(R.drawable.nature8,300,false,"pokemon");
+        Background n9 = new Background(R.drawable.nature9,700,true,"pokemon");
+        Background n10 = new Background(R.drawable.nature10,800,false,"pokemon");
+
+        //Add nature objects to SharedPreferences.
+        json = gson.toJson(n0);
+        editor.putString("n0",json);
+        json = gson.toJson(n1);
+        editor.putString("n1",json);
+        json = gson.toJson(n2);
+        editor.putString("n2",json);
+        json = gson.toJson(n3);
+        editor.putString("n3",json);
+        json = gson.toJson(n4);
+        editor.putString("n4",json);
+        json = gson.toJson(n5);
+        editor.putString("n5",json);
+        json = gson.toJson(n6);
+        editor.putString("n6",json);
+        json = gson.toJson(n7);
+        editor.putString("n7",json);
+        json = gson.toJson(n8);
+        editor.putString("n8",json);
+        json = gson.toJson(n9);
+        editor.putString("n9",json);
+        json = gson.toJson(n10);
+        editor.putString("n10",json);
+        editor.commit();
+
+        //Make nature background objects.
+        Background f0 = new Background(R.drawable.fantasy0,300,false,"pokemon") ;
+        Background f1 = new Background(R.drawable.fantasy1,300,false,"pokemon");
+        Background f2 = new Background(R.drawable.fantasy2,700,true,"pokemon");
+        Background f3 = new Background(R.drawable.fantasy3,800,false,"pokemon");
+        Background f4 = new Background(R.drawable.fantasy4,300,false,"pokemon") ;
+        Background f5 = new Background(R.drawable.fantasy5,300,false,"pokemon");
+        Background f6 = new Background(R.drawable.fantasy6,700,true,"pokemon");
+        Background f7 = new Background(R.drawable.fantasy7,800,false,"pokemon");
+
+
+        //Add nature objects to SharedPreferences.
+        json = gson.toJson(f0);
+        editor.putString("f0",json);
+        json = gson.toJson(f1);
+        editor.putString("f1",json);
+        json = gson.toJson(f2);
+        editor.putString("f2",json);
+        json = gson.toJson(f3);
+        editor.putString("f3",json);
+        json = gson.toJson(f4);
+        editor.putString("f4",json);
+        json = gson.toJson(f5);
+        editor.putString("f5",json);
+        json = gson.toJson(f6);
+        editor.putString("f6",json);
+        json = gson.toJson(f7);
+        editor.putString("f7",json);
         editor.commit();
     }
 

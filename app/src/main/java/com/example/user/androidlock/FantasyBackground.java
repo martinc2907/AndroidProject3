@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * Created by user on 2018-01-08.
  */
 
-public class PokemonBackgrounds extends Activity {
+public class FantasyBackground extends Activity {
     Button set,balance;
     ImageView money;
     int money_now;
@@ -37,7 +37,7 @@ public class PokemonBackgrounds extends Activity {
 
     @Override
     public void onBackPressed(){
-        Intent intent = new Intent(PokemonBackgrounds.this, MainActivity.class);
+        Intent intent = new Intent(FantasyBackground.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
         finish();
@@ -61,14 +61,14 @@ public class PokemonBackgrounds extends Activity {
 
 
         Gson gson = new Gson();
-        list.add(gson.fromJson(mSettings.getString("p0","fail"),Background.class));
-        list.add(gson.fromJson(mSettings.getString("p1","fail"),Background.class));
-        list.add(gson.fromJson(mSettings.getString("p2","fail"),Background.class));
-        list.add(gson.fromJson(mSettings.getString("p3","fail"),Background.class));
-        list.add(gson.fromJson(mSettings.getString("p4","fail"),Background.class));
-        list.add(gson.fromJson(mSettings.getString("p5","fail"),Background.class));
-        list.add(gson.fromJson(mSettings.getString("p6","fail"),Background.class));
-        list.add(gson.fromJson(mSettings.getString("p7","fail"),Background.class));
+        list.add(gson.fromJson(mSettings.getString("f0","fail"),Background.class));
+        list.add(gson.fromJson(mSettings.getString("f1","fail"),Background.class));
+        list.add(gson.fromJson(mSettings.getString("f2","fail"),Background.class));
+        list.add(gson.fromJson(mSettings.getString("f3","fail"),Background.class));
+        list.add(gson.fromJson(mSettings.getString("f4","fail"),Background.class));
+        list.add(gson.fromJson(mSettings.getString("f5","fail"),Background.class));
+        list.add(gson.fromJson(mSettings.getString("f6","fail"),Background.class));
+        list.add(gson.fromJson(mSettings.getString("f7","fail"),Background.class));
 
         money_now = mSettings.getInt("money",0);
         balance.setText(""+money_now);
@@ -87,10 +87,19 @@ public class PokemonBackgrounds extends Activity {
             set.setText("Set");
         }
 
+        Pokemon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(FantasyBackground.this, PokemonBackgrounds.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         Animals.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(PokemonBackgrounds.this, AnimalBackgrounds.class);
+                Intent intent = new Intent(FantasyBackground.this, AnimalBackgrounds.class);
                 startActivity(intent);
                 finish();
             }
@@ -99,19 +108,12 @@ public class PokemonBackgrounds extends Activity {
         Cute.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(PokemonBackgrounds.this, NatureBackgrounds.class);
+                Intent intent = new Intent(FantasyBackground.this, NatureBackgrounds.class);
                 startActivity(intent);
                 finish();
             }
         });
-        Cool3D.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(PokemonBackgrounds.this, FantasyBackground.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             public void onPageScrollStateChanged(int state) {}
@@ -143,21 +145,21 @@ public class PokemonBackgrounds extends Activity {
                     //Save selected
                     editor.putInt("main_img",selected.getImage());
                     editor.commit();
-                    Toast.makeText(PokemonBackgrounds.this, "Selected as Background",
+                    Toast.makeText(FantasyBackground.this, "Selected as Background",
                             Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(PokemonBackgrounds.this,MainActivity.class);
+                    Intent intent = new Intent(FantasyBackground.this,MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
                     finish();
                 }
                 else{
                     if(money_now<selected_now.getPrice()){
-                        Toast.makeText(PokemonBackgrounds.this, "Save up some more!",
+                        Toast.makeText(FantasyBackground.this, "Save up some more!",
                                 Toast.LENGTH_LONG).show();
 
                     }
                     else{
-                        builder = new AlertDialog.Builder(PokemonBackgrounds.this);
+                        builder = new AlertDialog.Builder(FantasyBackground.this);
                         View mView = getLayoutInflater().inflate(R.layout.pay_alert,null);
                         Button yesButton = mView.findViewById(R.id.yes);
                         Button noButton = mView.findViewById(R.id.no);
@@ -180,7 +182,7 @@ public class PokemonBackgrounds extends Activity {
                                 editor.commit();
                                 set.setText("Set");
                                 money.setVisibility(View.GONE);
-                                Toast.makeText(PokemonBackgrounds.this, money_now + " Coins Left!",
+                                Toast.makeText(FantasyBackground.this, money_now + " Coins Left!",
                                         Toast.LENGTH_LONG).show();
                                 popup.cancel();
 
@@ -216,7 +218,7 @@ public class PokemonBackgrounds extends Activity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            Context context = PokemonBackgrounds.this;
+            Context context = FantasyBackground.this;
             //추가
 
 

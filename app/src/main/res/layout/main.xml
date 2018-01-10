@@ -35,12 +35,12 @@
                 >
 
                 <com.github.clans.fab.FloatingActionButton
-                    android:id = "@+id/cute_btn"
+                    android:id = "@+id/nature_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:fab_size = "mini"
                     app:fab_colorNormal = "@android:color/transparent"
-                    android:src="@drawable/donut"
+                    android:src="@drawable/nature"
                     app:fab_label = "Cute"/>
 
                 <com.github.clans.fab.FloatingActionButton
@@ -62,10 +62,10 @@
                     app:fab_label = "Animals"/>
 
                 <com.github.clans.fab.FloatingActionButton
-                    android:id = "@+id/cool_btn"
+                    android:id = "@+id/fantasy_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/cube"
+                    android:src="@drawable/fantasy"
                     app:fab_size = "mini"
                     app:fab_colorNormal = "@android:color/transparent"
                     app:fab_label = "Cool 3D"/>

@@ -24,13 +24,15 @@
             android:text="Yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/roundedbutton"
             />
 
         <Button
             android:id= "@+id/no"
             android:text="No"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedbutton"/>
 
     </LinearLayout>
 

@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -165,21 +166,11 @@ public class LockScreenActivity extends AppCompatActivity{
 
         activityManager.moveTaskToFront(getTaskId(), 0);
     }
-
-    /*
     @Override
-    public void onBackPressed(){
-        return;
-    }
-*/
-    /*
-    @Override
-    public void onAttachedToWindow() {
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+    public boolean onPrepareOptionsMenu(Menu menu){
+        return false;
     }
 
-*/
 
 
 }
