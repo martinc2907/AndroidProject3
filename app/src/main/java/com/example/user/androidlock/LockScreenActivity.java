@@ -3,6 +3,7 @@ package com.example.user.androidlock;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -48,6 +49,7 @@ public class LockScreenActivity extends AppCompatActivity{
     int img_id;
     TextView done;
     int reward;
+    boolean isOn = true;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -56,7 +58,7 @@ public class LockScreenActivity extends AppCompatActivity{
         getSupportActionBar().hide();
 
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         setContentView(R.layout.lockscreen);
 
@@ -69,17 +71,13 @@ public class LockScreenActivity extends AppCompatActivity{
         mHomeKeyLocker = new HomeKeyLocker();
         mHomeKeyLocker.lock(this);
 
-        if(!Settings.canDrawOverlays(getApplicationContext())){
-            startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
-        }
-
         //ticktock = findViewById(R.id.ticktock);
         unlockBtn = findViewById(R.id.unlock_btn);
 
         unlockBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+                //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 
                 builder = new AlertDialog.Builder(LockScreenActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.custom_alert,null);
@@ -161,6 +159,7 @@ public class LockScreenActivity extends AppCompatActivity{
                 Intent i= new Intent(LockScreenActivity.this, MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(i);
+                finish();
                 success = true;
             }
         }.start();
@@ -175,11 +174,18 @@ public class LockScreenActivity extends AppCompatActivity{
 
         activityManager.moveTaskToFront(getTaskId(), 0);
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        //isOn = !isOn;
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+    }
+
+    /*
     @Override
     public boolean onPrepareOptionsMenu(Menu menu){
         return false;
     }
-
-
-
+    */
 }

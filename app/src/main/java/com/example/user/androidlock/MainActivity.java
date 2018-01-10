@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -54,13 +56,19 @@ public class MainActivity extends Activity {
         /* Shared Preferences */
         mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         mSettings.edit().clear().commit();
-//initialize many times or not
-        /*
+        //initialize many times or not
+
+
         if(!mSettings.getBoolean("firstTime",false)){
             Log.e("TAGGER", "Initialised");
             init_data();
-        }*/
-        init_data();
+        }
+        //init_data();
+
+        if(!Settings.canDrawOverlays(getApplicationContext())){
+            Toast.makeText(getApplicationContext(),"Please turn on permission for app on this screen",Toast.LENGTH_LONG).show();
+            startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
+        }
 
         main_img = mSettings.getInt("main_img",0);
         lock_btn = findViewById(R.id.lock_btn);
@@ -72,6 +80,7 @@ public class MainActivity extends Activity {
         fantasy_btn = findViewById(R.id.fantasy_btn);
         money_show = findViewById(R.id.money);
 
+        money = mSettings.getInt("money",0);
         money_show.setText(Integer.toString(money));
 
         hr = findViewById(R.id.hr);
@@ -81,17 +90,6 @@ public class MainActivity extends Activity {
         min = findViewById(R.id.min);
         min.setMinValue(0);
         min.setMaxValue(59);
-
-        /* Test button that changes screen lock background upon click. */
-        test_btn = findViewById(R.id.test_btn);
-        test_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                main_img++;
-                mSettings.edit().putInt("main_img", main_img).commit();
-            }
-        });
-
 
         preview.setOnTouchListener(new View.OnTouchListener(){
             @Override
@@ -205,8 +203,8 @@ public class MainActivity extends Activity {
         editor.putBoolean("firstTime",true);
 
         //Default main image and initialise.
-        main_img = R.drawable.lock_default;
-        editor.putInt("main_img", R.drawable.lock_default);
+        main_img = R.drawable.default_background;
+        editor.putInt("main_img", R.drawable.default_background);
 
         //Default money and initalise.
         money = 2000;
@@ -325,7 +323,6 @@ public class MainActivity extends Activity {
         Background f5 = new Background(R.drawable.fantasy5,300,false,"pokemon");
         Background f6 = new Background(R.drawable.fantasy6,700,true,"pokemon");
         Background f7 = new Background(R.drawable.fantasy7,800,false,"pokemon");
-
 
         //Add nature objects to SharedPreferences.
         json = gson.toJson(f0);
