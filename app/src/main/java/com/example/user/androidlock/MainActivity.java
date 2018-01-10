@@ -1,5 +1,6 @@
 package com.example.user.androidlock;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,10 +9,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.gson.Gson;
 
 /**
@@ -20,7 +27,7 @@ import com.google.gson.Gson;
 
 public class MainActivity extends Activity {
 
-    private Button lock_btn;
+    private FloatingActionButton lock_btn;
     private EditText timer;
     SharedPreferences mSettings;
     SharedPreferences.Editor editor;
@@ -28,7 +35,12 @@ public class MainActivity extends Activity {
     private Button test_btn;
     private boolean backFromGallery;
     private int money;
+    private NumberPicker hr;
+    private NumberPicker min;
+    private FloatingActionButton preview;
+    private RelativeLayout rl;
 
+    @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -43,10 +55,21 @@ public class MainActivity extends Activity {
             Log.e("TAGGER", "Initialised");
             init_data();
         }
-        main_img = mSettings.getInt("main_img",0);
+        //init_data();
 
+        main_img = mSettings.getInt("main_img",0);
         lock_btn = findViewById(R.id.lock_btn);
-        timer = findViewById(R.id.timer_input);
+        preview = findViewById(R.id.preview);
+        rl = findViewById(R.id.rl);
+
+
+        hr = findViewById(R.id.hr);
+        hr.setMinValue(0);
+        hr.setMaxValue(12);
+
+        min = findViewById(R.id.min);
+        min.setMinValue(0);
+        min.setMaxValue(59);
 
         /* Test button that changes screen lock background upon click. */
         test_btn = findViewById(R.id.test_btn);
@@ -58,18 +81,46 @@ public class MainActivity extends Activity {
             }
         });
 
+
+        preview.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event){
+                String temp = rl.getBackground().toString();
+                String temp2 = temp.replace("android.graphics.drawable.BitmapDrawable@","");
+                int savePrev = Integer.parseInt(temp2,16);
+                //int savePrev = Integer.decode(temp2);
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        //PRESSED
+                        rl.setBackgroundResource(main_img);
+                        hideViews();
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        //RELEASED
+                        rl.setBackgroundResource(R.drawable.gradient2);
+                        showViews();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+
         lock_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String text = timer.getText().toString();
-                timer.setText("");
-                int seconds = Integer.valueOf(text);
+                int hours = hr.getValue();
+                int mins = min.getValue();
+
+                hr.setValue(0);
+                min.setValue(0);
+
                 Intent intent = new Intent(MainActivity.this, LockScreenActivity.class);
-                intent.putExtra("TIME", seconds);
-                intent.putExtra("IMG", main_img);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent.putExtra("hours",hours);
+                intent.putExtra("minutes",mins);
+                intent.putExtra("IMG",main_img);
                 startActivityForResult(intent,1);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
     }
@@ -129,5 +180,45 @@ public class MainActivity extends Activity {
         json = gson.toJson(b5);
         editor.putString("b5",json);
         editor.commit();    //Call once? or every time?
+    }
+
+    public void hideViews(){
+        FloatingActionMenu menu = findViewById(R.id.menu);
+        TextView tv1 = findViewById(R.id.hrsText);
+        TextView tv2 = findViewById(R.id.minsText);
+        TextView tv3 = findViewById(R.id.title);
+        Button b1 = findViewById(R.id.money);
+
+        lock_btn.setVisibility(View.INVISIBLE);
+        hr.setVisibility(View.INVISIBLE);
+        min.setVisibility(View.INVISIBLE);
+        menu.setVisibility(View.INVISIBLE);
+        tv1.setVisibility(View.INVISIBLE);
+        tv2.setVisibility(View.INVISIBLE);
+        //tv3.setVisibility(View.INVISIBLE);
+        tv3.setText("PREVIEW");
+        b1.setVisibility(View.INVISIBLE);
+
+
+
+    }
+
+    public void showViews(){
+        FloatingActionMenu menu = findViewById(R.id.menu);
+        TextView tv1 = findViewById(R.id.hrsText);
+        TextView tv2 = findViewById(R.id.minsText);
+        TextView tv3 = findViewById(R.id.title);
+        Button b1 = findViewById(R.id.money);
+
+        lock_btn.setVisibility(View.VISIBLE);
+        hr.setVisibility(View.VISIBLE);
+        min.setVisibility(View.VISIBLE);
+        menu.setVisibility(View.VISIBLE);
+        tv1.setVisibility(View.VISIBLE);
+        tv2.setVisibility(View.VISIBLE);
+        //tv3.setVisibility(View.VISIBLE);
+        tv3.setText("Study Lock");
+        b1.setVisibility(View.VISIBLE);
+
     }
 }

@@ -1,29 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation = "vertical"
-    android:background = "@drawable/lock_default">
-
-    <TextView
-        android:id = "@+id/ticktock"
+    android:background = "@drawable/default_background">
+    
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor= "#ffffff"
-        android:textSize="40sp"
-        android:layout_marginTop= "460dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom = "10dp"/>
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom = "60dp">
+        <TextView
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filler"
+            android:textSize = "35sp"
+            android:visibility="invisible"
+            android:drawableRight = "@drawable/coin_big"/>
+    </FrameLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/unlock_btn"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_gravity="center"
-        android:src = "@drawable/run"
-        android:backgroundTint = "#9959D9"/>
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id = "@+id/tick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "0"
+                android:textSize="40sp"
+                android:layout_marginRight="5dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id = "@+id/tickText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "hrs"
+                android:layout_marginRight="10dp"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/tock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:textSize="40sp"
+                android:text = "0"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:id = "@+id/tockText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "mins"/>
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/unlock_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:src = "@drawable/run"
+            android:backgroundTint = "#9959D9"
+            android:layout_marginBottom="30dp"/>
+    </LinearLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

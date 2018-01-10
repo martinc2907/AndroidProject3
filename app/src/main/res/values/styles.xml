@@ -18,4 +18,8 @@
     </style>
 
 
+    <style name="DefaultNumberPickerTheme" parent="AppTheme">
+        <item name="colorControlNormal">@color/dividercolor</item>
+    </style>
+
 </resources>

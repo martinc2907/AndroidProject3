@@ -1,77 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient2"
+    android:id ="@+id/rl">
 
-        <RelativeLayout
-            android:id="@+id/viewA"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
-            android:background="@android:color/holo_purple"
-            android:orientation="horizontal"
-            >
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft = "@drawable/coin"
-                android:layout_alignParentRight="true"
-                android:text = "9999"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="false"
-                android:paddingLeft="15dp"
-                />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text = "test button-change image"
-                android:id="@+id/test_btn"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation= "horizontal">
-
-                <EditText
-                    android:id="@+id/timer_input"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned|numberDecimal"
-                    android:hint="Enter time in seconds"/>
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/viewB"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4"
-            android:background="@android:color/holo_orange_light"
-            android:orientation="horizontal">
+    <com.github.clans.fab.FloatingActionButton
+        android:id = "@+id/preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_size = "mini"
+        app:fab_colorNormal = "@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/search"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        />
 
             <com.github.clans.fab.FloatingActionMenu
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
+                android:id="@+id/menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                fab:menu_colorNormal = "#42A5F5">
+                fab:menu_colorNormal="@android:color/transparent"
+                fab:menu_labels_position = "left"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src = "@drawable/menu"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="15dp"
+                fab:menu_fab_size="mini"
+                >
 
                 <com.github.clans.fab.FloatingActionButton
                     android:id = "@+id/float1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:fab_size = "mini"
-                    app:fab_colorNormal = "#42A5F5"
+                    app:fab_colorNormal = "@android:color/transparent"
                     android:src="@drawable/donut"
                     app:fab_label = "Cute"/>
 
@@ -80,8 +48,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/pikachu"
-                     app:fab_size = "mini"
-                    app:fab_colorNormal = "#42A5F5"
+                    app:fab_size = "mini"
+                    app:fab_colorNormal = "@android:color/transparent"
                     app:fab_label = "Pokemon"/>
 
                 <com.github.clans.fab.FloatingActionButton
@@ -90,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/giraffe"
                     app:fab_size = "mini"
-                    app:fab_colorNormal = "#42A5F5"
+                    app:fab_colorNormal = "@android:color/transparent"
                     app:fab_label = "Animals"/>
 
                 <com.github.clans.fab.FloatingActionButton
@@ -99,31 +67,89 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/cube"
                     app:fab_size = "mini"
-                    app:fab_colorNormal = "#42A5F5"
+                    app:fab_colorNormal = "@android:color/transparent"
                     app:fab_label = "Cool 3D"/>
-
             </com.github.clans.fab.FloatingActionMenu>
 
-
             <Button
-                android:id= "@+id/lock_btn"
+                android:id = "@+id/money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text = "Start Lock"/>
+                android:drawableLeft = "@drawable/coin"
+                android:layout_alignParentRight="true"
+                android:text = "9999"
+                android:background="@drawable/shape"
+                android:clickable="false"
+                android:paddingLeft="15dp" />
 
-        </RelativeLayout>
-    </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "test"
+                android:id="@+id/test_btn"
+                android:visibility="invisible"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation = "vertical"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text = "Study Lock"
+                    android:fontFamily = "sans-serif-thin"
+                    android:textStyle="bold"
+                    android:textSize = "40sp"
+                    android:layout_marginBottom="20dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_centerInParent="true"
+                    android:gravity="center">
+
+                    <NumberPicker
+                        android:id="@+id/hr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:theme = "@style/DefaultNumberPickerTheme"
+                        android:alpha= "0.99"/>
+
+                    <TextView
+                        android:id="@+id/hrsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text = "hrs"
+                        android:layout_marginRight="10dp"/>
+
+                    <NumberPicker
+                        android:id="@+id/min"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:theme = "@style/DefaultNumberPickerTheme"
+                        android:alpha="0.99"/>
+                    <TextView
+                        android:id="@+id/minsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text = "mins"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id = "@+id/lock_btn"
+        android:src = "@drawable/unlocked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="#42A5F5"
-        android:background = "#42A5F5"
-        android:clickable="true"
-        android:src="@drawable/ic_done2"
-        app:layout_anchor="@id/viewA"
-        app:layout_anchorGravity="bottom|right|end"/>
-</android.support.design.widget.CoordinatorLayout>
+        app:fab_size = "normal"
+        app:fab_colorNormal = "@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        />
+</RelativeLayout>
+

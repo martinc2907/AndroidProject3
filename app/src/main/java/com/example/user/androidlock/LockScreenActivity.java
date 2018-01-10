@@ -26,19 +26,26 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class LockScreenActivity extends AppCompatActivity{
     FloatingActionButton unlockBtn;
     TextView ticktock;
+    TextView hr;
+    TextView min;
+    TextView hrText;
+    TextView minText;
     private HomeKeyLocker mHomeKeyLocker;
     private AlertDialog.Builder builder;
     private AlertDialog popup;
     private CountDownTimer countDownTimer;
     boolean success = true;
-    LinearLayout ll;
+    RelativeLayout ll;
     int img_id;
+    TextView done;
+    int reward;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -48,6 +55,7 @@ public class LockScreenActivity extends AppCompatActivity{
 
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         setContentView(R.layout.lockscreen);
 
         img_id = getIntent().getIntExtra("IMG",0);
@@ -63,7 +71,7 @@ public class LockScreenActivity extends AppCompatActivity{
             startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
         }
 
-        ticktock = findViewById(R.id.ticktock);
+        //ticktock = findViewById(R.id.ticktock);
         unlockBtn = findViewById(R.id.unlock_btn);
 
         unlockBtn.setOnClickListener(new View.OnClickListener(){
@@ -96,28 +104,46 @@ public class LockScreenActivity extends AppCompatActivity{
             }
         });
 
-        int seconds = getIntent().getIntExtra("TIME",10);
-        countDownTimer = new CountDownTimer(seconds * 1000, 1000) {
+        int hours = getIntent().getIntExtra("hours",0);
+        int mins = getIntent().getIntExtra("minutes",0);
+        hr = findViewById(R.id.tick);
+        min = findViewById(R.id.tock);
+        hrText = findViewById(R.id.tickText);
+        minText = findViewById(R.id.tockText);
+        done = findViewById(R.id.done);
+        reward = (hours*3600+mins*60)/100;
+
+        countDownTimer = new CountDownTimer((hours*60*60 + mins*60)*1000+1000, 1000){
             @Override
-            public void onTick(long millis) {
-                ticktock.setText( Integer.toString((int) (millis / 1000)));
+            public void onTick(long millis){
+                long secs = millis/1000;
+                long h = secs/3600;
+                long m = (secs - h*3600)/60;
+                hr.setText(Long.toString(h));
+                min.setText(Long.toString(m));
             }
 
             @Override
-            public void onFinish() {
+            public void onFinish(){
                 this.cancel();
                 if(popup!=null)
                     popup.cancel();
                 unlockBtn.setVisibility(View.GONE);
+                min.setVisibility(View.GONE);
+                hr.setVisibility(View.GONE);
+                hrText.setVisibility(View.GONE);
+                minText.setVisibility(View.GONE);
 
                 //Show success/failure image
                 ll = findViewById(R.id.back);
                 if(success){
-                    ll.setBackgroundResource(R.drawable.test1);
-                    ticktock.setText("Nice!");
+                    //ll.setBackgroundResource(R.drawable.test1);
+                    done.setText("+" + Integer.toString(reward));
+                    done.setVisibility(View.VISIBLE);
                 }else{
-                    ll.setBackgroundResource(R.drawable.test2);
-                    ticktock.setText("Try again next time!");
+                    //ll.setBackgroundResource(R.drawable.test2);
+                    done.setText("Try again next time!");
+                    done.setVisibility(View.VISIBLE);
                 }
 
                 //Go back to previous screen
@@ -128,8 +154,6 @@ public class LockScreenActivity extends AppCompatActivity{
                 success = true;
             }
         }.start();
-
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
     }
 
     @Override
