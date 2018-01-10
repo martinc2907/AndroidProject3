@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,24 +14,26 @@
             android:id="@+id/viewA"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/lock_btn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_weight="0.6"
             android:background="@android:color/holo_purple"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation= "vertical">
+                android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/timer_input"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="numberSigned|numberDecimal"
+                    android:layout_gravity="center"
                     android:hint="Enter time in seconds"
-                    android:layout_gravity="center"/>
+                    android:inputType="numberSigned|numberDecimal" />
 
             </LinearLayout>
 
@@ -52,6 +55,18 @@
                 android:layout_gravity="center"
                 android:layout_centerInParent="true"
                 android:text = "Start Lock"/>
+
+            <Button
+                android:id="@+id/list_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/lock_btn"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@+id/lock_btn"
+                android:layout_toRightOf="@+id/lock_btn"
+                android:text="Button" />
 
         </RelativeLayout>
 

@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity android:name= ".LockScreenActivity" />
+        <activity android:name= ".PokemonBackgrounds" />
+        <activity android:name= ".AnimalBackgrounds" />
 
 
     </application>
