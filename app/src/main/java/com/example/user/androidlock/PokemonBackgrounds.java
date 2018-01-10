@@ -108,20 +108,17 @@ public class PokemonBackgrounds extends Activity {
         Animals.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
                 Intent intent = new Intent(PokemonBackgrounds.this, AnimalBackgrounds.class);
                 startActivity(intent);
                 finish();
             }
         });
 
-
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             public void onPageScrollStateChanged(int state) {}
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
             public void onPageSelected(int position) {
-
                 int index = viewPager.getCurrentItem();
                 Gson gson = new Gson();
                 Background selected_now = gson.fromJson(mSettings.getString("p"+index,"fail"),Background.class);
