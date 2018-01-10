@@ -6,6 +6,7 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -140,10 +141,18 @@ public class LockScreenActivity extends AppCompatActivity{
                 if(success){
                     //ll.setBackgroundResource(R.drawable.test1);
                     done.setText("+" + Integer.toString(reward));
+                    SharedPreferences mSettings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = mSettings.edit();
+                    editor.putInt("money",mSettings.getInt("money",0)+reward);
+                    editor.commit();
                     done.setVisibility(View.VISIBLE);
                 }else{
                     //ll.setBackgroundResource(R.drawable.test2);
-                    done.setText("Try again next time!");
+                    done.setText("You now have 0 ");
+                    SharedPreferences mSettings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = mSettings.edit();
+                    editor.putInt("money",0);
+                    editor.commit();
                     done.setVisibility(View.VISIBLE);
                 }
 

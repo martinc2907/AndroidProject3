@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
         /* Shared Preferences */
         mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         mSettings.edit().clear().commit();
-
+//initialize many times or not
         /*
         if(!mSettings.getBoolean("firstTime",false)){
             Log.e("TAGGER", "Initialised");
@@ -192,6 +192,9 @@ public class MainActivity extends Activity {
         //If coming back from screen lock.
         else{
             backFromGallery = false;    //set flag for animation.
+            mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+            money = mSettings.getInt("money",0);
+            money_show.setText(Integer.toString(money));
         }
         super.onResume();
     }
