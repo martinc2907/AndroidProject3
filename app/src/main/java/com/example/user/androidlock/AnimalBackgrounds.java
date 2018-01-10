@@ -56,7 +56,7 @@ public class AnimalBackgrounds extends Activity {
         Animals = findViewById(R.id.float3);
         Cool3D = findViewById(R.id.float4);
         //Shared Preferences 초기화
-        mSettings = this.getSharedPreferences("settings",Context.MODE_PRIVATE);
+        mSettings = this.getSharedPreferences("Settings",Context.MODE_PRIVATE);
         editor = mSettings.edit();
         /*
         Background b1 = new Background(R.drawable.animal1,300,false,"cute") ;
@@ -169,10 +169,13 @@ public class AnimalBackgrounds extends Activity {
                     Background selected = list.get(index);
                     //Save selected
                     editor.putInt("main_img",selected.getImage());
+                    editor.commit();
                     Toast.makeText(AnimalBackgrounds.this, "Selected as Background",
                             Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(AnimalBackgrounds.this,MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
+                    finish();
                 }
                 else{
                     if(money_now<selected_now.getPrice()){

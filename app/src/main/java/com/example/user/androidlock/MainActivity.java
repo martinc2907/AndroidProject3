@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
 
         /* Shared Preferences */
         mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        //mSettings.edit().clear().commit();
+        mSettings.edit().clear().commit();
 
         /*
         if(!mSettings.getBoolean("firstTime",false)){
@@ -164,7 +164,6 @@ public class MainActivity extends Activity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onResume();
 
         //If coming back from gallery activity.
         if(requestCode != 1) {
@@ -178,6 +177,7 @@ public class MainActivity extends Activity {
         else{
             backFromGallery = false;    //set flag for animation.
         }
+        super.onResume();
     }
 
     private void init_data(){
@@ -228,7 +228,7 @@ public class MainActivity extends Activity {
         editor.putString("a8",json);
         json = gson.toJson(a9);
         editor.putString("a9",json);
-        editor.commit();    //Call once? or every time?
+        //editor.commit();
 
         //Make pokemon background objects.
         Background p0 = new Background(R.drawable.b1,300,false,"pokemon") ;
