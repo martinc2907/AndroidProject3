@@ -68,7 +68,7 @@
                     android:src="@drawable/fantasy"
                     app:fab_size = "mini"
                     app:fab_colorNormal = "@android:color/transparent"
-                    app:fab_label = "Cool 3D"/>
+                    app:fab_label = "Fantasy"/>
             </com.github.clans.fab.FloatingActionMenu>
 
             <Button
